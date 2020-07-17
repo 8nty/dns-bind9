@@ -1,3 +1,5 @@
+5692.	[protocol]	Add support for HTTPS and SVCB record types. [GL #1132]
+
 5691.	[bug]		'rndc freeze' with in-view zones present would
 			spuriously report failures. [GL #2844]
 
