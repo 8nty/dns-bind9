@@ -1442,17 +1442,10 @@ isc__nm_async_tlsdobio(isc__networker_t *worker, isc__netievent_t *ev0);
 
 void
 isc__nm_async_tlscancel(isc__networker_t *worker, isc__netievent_t *ev0);
-
 /*%<
- * Callback handlers for asynchronouse TLS events.
+ * Callback handlers for asynchronous TLS events.
  */
 
-void
-isc__nm_async_tcpdnsaccept(isc__networker_t *worker, isc__netievent_t *ev0);
-void
-isc__nm_async_tcpdnsconnect(isc__networker_t *worker, isc__netievent_t *ev0);
-void
-isc__nm_async_tcpdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_tcpdns_send(isc_nmhandle_t *handle, isc_region_t *region,
 		    isc_nm_cb_t cb, void *cbarg);
@@ -1483,9 +1476,11 @@ isc__nm_tcpdns_settimeout(isc_nmhandle_t *handle, uint32_t timeout);
  */
 
 void
-isc__nm_async_tcpdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
-void
 isc__nm_async_tcpdnsaccept(isc__networker_t *worker, isc__netievent_t *ev0);
+void
+isc__nm_async_tcpdnsconnect(isc__networker_t *worker, isc__netievent_t *ev0);
+void
+isc__nm_async_tcpdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_async_tcpdnscancel(isc__networker_t *worker, isc__netievent_t *ev0);
 void
@@ -1494,12 +1489,17 @@ void
 isc__nm_async_tcpdnssend(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_async_tcpdnsstop(isc__networker_t *worker, isc__netievent_t *ev0);
-
 void
 isc__nm_async_tcpdnsread(isc__networker_t *worker, isc__netievent_t *ev0);
+/*%<
+ * Callback handlers for asynchronous TCPDNS events.
+ */
 
 void
 isc__nm_tcpdns_read(isc_nmhandle_t *handle, isc_nm_recv_cb_t cb, void *cbarg);
+/*
+ * Back-end implementation of isc_nm_read() for TCPDNS handles.
+ */
 
 void
 isc__nm_tcpdns_cancelread(isc_nmhandle_t *handle);
@@ -1508,13 +1508,14 @@ isc__nm_tcpdns_cancelread(isc_nmhandle_t *handle);
  */
 
 void
-isc__nm_async_tlsdnscycle(isc__networker_t *worker, isc__netievent_t *ev0);
-void
-isc__nm_async_tlsdnsaccept(isc__networker_t *worker, isc__netievent_t *ev0);
-void
-isc__nm_async_tlsdnsconnect(isc__networker_t *worker, isc__netievent_t *ev0);
-void
-isc__nm_async_tlsdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
+isc__nm_tcpdns_keepalive(isc_nmhandle_t *handle, bool value);
+/*%<
+ * Enable/disable keepalive on this connection by setting it to 'value'.
+ *
+ * When keepalive is active, we switch to using the keepalive timeout
+ * to determine when to close a connection, rather than the idle timeout.
+ */
+
 void
 isc__nm_tlsdns_send(isc_nmhandle_t *handle, isc_region_t *region,
 		    isc_nm_cb_t cb, void *cbarg);
@@ -1542,9 +1543,34 @@ isc__nm_tlsdns_settimeout(isc_nmhandle_t *handle, uint32_t timeout);
  */
 
 void
-isc__nm_async_tlsdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
+isc__nm_tlsdns_read(isc_nmhandle_t *handle, isc_nm_recv_cb_t cb, void *cbarg);
+/*
+ * Back-end implementation of isc_nm_read() for TLSDNS handles.
+ */
+
+void
+isc__nm_tlsdns_cancelread(isc_nmhandle_t *handle);
+/*%<
+ * Stop reading on a connected TLSDNS handle.
+ */
+
+void
+isc__nm_tlsdns_keepalive(isc_nmhandle_t *handle, bool value);
+/*%<
+ * Enable/disable keepalive on this connection by setting it to 'value'.
+ *
+ * When keepalive is active, we switch to using the keepalive timeout
+ * to determine when to close a connection, rather than the idle timeout.
+ */
+
+void
+isc__nm_async_tlsdnscycle(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_async_tlsdnsaccept(isc__networker_t *worker, isc__netievent_t *ev0);
+void
+isc__nm_async_tlsdnsconnect(isc__networker_t *worker, isc__netievent_t *ev0);
+void
+isc__nm_async_tlsdnslisten(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_async_tlsdnscancel(isc__networker_t *worker, isc__netievent_t *ev0);
 void
@@ -1555,17 +1581,10 @@ void
 isc__nm_async_tlsdnsstop(isc__networker_t *worker, isc__netievent_t *ev0);
 void
 isc__nm_async_tlsdnsshutdown(isc__networker_t *worker, isc__netievent_t *ev0);
-
 void
 isc__nm_async_tlsdnsread(isc__networker_t *worker, isc__netievent_t *ev0);
-
-void
-isc__nm_tlsdns_read(isc_nmhandle_t *handle, isc_nm_recv_cb_t cb, void *cbarg);
-
-void
-isc__nm_tlsdns_cancelread(isc_nmhandle_t *handle);
 /*%<
- * Stop reading on a connected TLSDNS handle.
+ * Callback handlers for asynchronous TLSDNS events.
  */
 
 #if HAVE_LIBNGHTTP2
