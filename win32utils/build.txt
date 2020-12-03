@@ -110,21 +110,22 @@ Step 4: Download and build zlib
     cd zlib-1.2.11
     nmake /f win32\Makefile.msc
 
-Step 5: Download and build GeoIP
+Step 5: Download and build libmaxminddb
 
-  Geographic ("geoip") ACLs require libGeoIP. If you wish to build BIND 9
-  without support for this feature, skip to step 6.
+  Geographic ("geoip") ACLs require libmaxminddb. If you wish to build
+  BIND 9 without support for this feature, skip to step 6.
 
-  The libGeoIP source code is available from:
+  The libmaxminddb source code is available from:
 
-    https://github.com/maxmind/geoip-api-c/releases.
+    https://github.com/maxmind/libmaxminddb/releases
 
-  As of this writing, the current version of libGeoIP is 1.6.0.  There
-  is a known bug in this and all prior versions which prevents it from
-  building a suitable DLL with thread support on Windows.  You can apply
-  the patch file bind9/win32utils/GeoIP.diff to address the problem.
-  This patch has been submitted upstream, and will be included in
-  future versions of libGeoIP.
+  Now build libmaxminddb:
+
+      cd libmaxminddb-1.5.0
+      mkdir build
+      cd build
+      cmake -DCMAKE_GENERATOR_PLATFORM=x64 -DBUILD_TESTING=OFF ..
+      cmake --build . --config Release
 
 Step 6: Download and build Readline
 
