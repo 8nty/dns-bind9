@@ -391,7 +391,7 @@ dns_client_startrequest(dns_client_t *client, dns_message_t *qmessage,
  * transaction authentication.
  *
  * 'timeout', 'udptimeout', and 'udpretries' are passed to
- * dns_request_createvia3().  See dns_request_createvia3() for more details.
+ * dns_request_createvia().  See dns_request_createvia() for more details.
  *
  * dns_client_request() provides a synchronous service.  This function sends
  * the request and blocks until a response is received.  On success,
