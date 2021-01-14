@@ -2657,7 +2657,7 @@ http_close_direct(isc_nmsocket_t *sock) {
 	atomic_store(&sock->active, false);
 	session = sock->h2.session;
 
-	if (session != NULL && session->handle) {
+	if (session != NULL && session->handle != NULL) {
 		http_do_bio(session, NULL, NULL, NULL);
 	}
 }
@@ -3020,7 +3020,7 @@ isc__nm_http_cleartimeout(isc_nmhandle_t *handle) {
 	REQUIRE(handle->sock->type == isc_nm_httpsocket);
 
 	sock = handle->sock;
-	if (sock->h2.session != NULL && sock->h2.session->handle) {
+	if (sock->h2.session != NULL && sock->h2.session->handle != NULL) {
 		INSIST(VALID_HTTP2_SESSION(sock->h2.session));
 		INSIST(VALID_NMHANDLE(sock->h2.session->handle));
 		isc_nmhandle_cleartimeout(sock->h2.session->handle);
@@ -3036,7 +3036,7 @@ isc__nm_http_settimeout(isc_nmhandle_t *handle, uint32_t timeout) {
 	REQUIRE(handle->sock->type == isc_nm_httpsocket);
 
 	sock = handle->sock;
-	if (sock->h2.session != NULL && sock->h2.session->handle) {
+	if (sock->h2.session != NULL && sock->h2.session->handle != NULL) {
 		INSIST(VALID_HTTP2_SESSION(sock->h2.session));
 		INSIST(VALID_NMHANDLE(sock->h2.session->handle));
 		isc_nmhandle_settimeout(sock->h2.session->handle, timeout);
