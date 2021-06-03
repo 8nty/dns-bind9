@@ -1,6 +1,6 @@
 /*
- * SPDX-FileCopyrightText: 2002 Stichting NLnet, Netherlands, stichting@nlnet.nl.
- * SPDX-FileCopyrightText: 2012 Vadim Goncharov, Russia, vadim_nuclight@mail.ru.
+ * SPDX-FileCopyrightText: 2002 Stichting NLnet, Netherlands,
+ *                         stichting@nlnet.nl.
  * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
  *
  * SPDX-License-Identifier: MPL-2.0 AND ISC

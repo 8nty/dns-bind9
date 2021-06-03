@@ -1,5 +1,6 @@
 /*
- * SPDX-FileCopyrightText: 2014 Maui Systems Ltd, Scotland, contact@maui-systems.co.uk.
+ * SPDX-FileCopyrightText: 2002 Stichting NLnet, Netherlands,
+ *                         stichting@nlnet.nl.
  * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
  *
  * SPDX-License-Identifier: MPL-2.0 AND ISC
