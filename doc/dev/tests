@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 We do hourly test builds of the bind9 tree.  This is an attempt to
 document how they work.
 

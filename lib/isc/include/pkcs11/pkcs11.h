@@ -1,3 +1,11 @@
+/*
+ * SPDX-FileCopyrightText: g10 Code GmbH
+ * SPDX-FileCopyrightText: 2006 Andreas Jellinghaus
+ * SPDX-FileCopyrightText: 2017 Red Hat, Inc.
+ *
+ * SPDX-License-Identifier: LicenseRef-g10-code
+ */
+
 /* pkcs11.h
  * Copyright 2006, 2007 g10 Code GmbH
  * Copyright 2006 Andreas Jellinghaus

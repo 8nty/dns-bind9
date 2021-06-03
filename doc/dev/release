@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 Preparing a bind9 release
 
 Here's a rough outline of the steps to follow in preparing a new bind9

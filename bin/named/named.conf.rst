@@ -1,3 +1,7 @@
+.. SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+..
+.. SPDX-License-Identifier: MPL-2.0
+
 .. highlight: console
 
 named.conf - configuration file for **named**

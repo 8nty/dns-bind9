@@ -1,3 +1,8 @@
+<!--
+ - SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ -
+ - SPDX-License-Identifier: MPL-2.0
+ -->
 # BIND 9 Code of Conduct
 
 Like the technical community as a whole, the BIND 9 team and community is made

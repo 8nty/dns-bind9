@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2009 Filippo Giunchedi <filippo@esaurito.net>
+# SPDX-FileCopyrightText: 2011 The Board of Trustees of the Leland Stanford Junior University
+# SPDX-FileCopyrightText: 2011 Russ Allbery <rra@stanford.edu>
+# SPDX-FileCopyrightText: 2013 Bastien ROUCARIES <roucaries.bastien+autoconf@gmail.com>
+#
+# SPDX-License-Identifier: FSFAP
+
 # ===========================================================================
 #     https://www.gnu.org/software/autoconf-archive/ax_restore_flags.html
 # ===========================================================================

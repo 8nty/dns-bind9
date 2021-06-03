@@ -1,7 +1,15 @@
 /*
- * Zone management.
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
  *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
  * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
+ */
+
+/*
+ * Zone management.
  */
 
 #include "zone.h"

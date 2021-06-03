@@ -1,10 +1,14 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 This directory contains scripts, tools, and other useful accessories to
 BIND 9.  Contrib software is not supported by ISC, but reported bugs will
 be fixed as time permits.
 
     - scripts/
 
-      Assorted useful scripts, including 'nanny' which monitors 
+      Assorted useful scripts, including 'nanny' which monitors
       named and restarts it in the event of a crash, 'zone-edit'
       which enables editing of a dynamic zone, and others.
 

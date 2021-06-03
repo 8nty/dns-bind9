@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 The test setup for the RPZ tests prepares a query perf tool and sets up
 policy zones.
 

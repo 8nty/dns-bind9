@@ -1,4 +1,14 @@
 /*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
+ * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
+ */
+
+/*
  * Driver API implementation and main entry point for BIND.
  *
  * BIND calls dyndb_version() before loading, dyndb_init() during startup
@@ -11,8 +21,6 @@
  * each section even if they reference the same driver/library. It is
  * up to driver implementation to detect and catch this situation if
  * it is undesirable.
- *
- * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
  */
 
 #include <isc/commandline.h>

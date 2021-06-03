@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2009,2010 Zmanda Inc. <http://www.zmanda.com/>
+# SPDX-FileCopyrightText: 2009,2010 Dustin J. Mitchell <dustin@zmanda.com>
+#
+# SPDX-License-Identifier: FSFAP
+
 # ===========================================================================
 #     https://www.gnu.org/software/autoconf-archive/ax_check_openssl.html
 # ===========================================================================

@@ -1,5 +1,9 @@
 #!/usr/bin/perl
 
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 use warnings;
 use strict;
 

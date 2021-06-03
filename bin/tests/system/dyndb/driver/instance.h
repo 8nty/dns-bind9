@@ -1,7 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
+ * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
+ */
+
 /**
  * Driver instance object.
- *
- * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
  */
 
 #ifndef _LD_INSTANCE_H_

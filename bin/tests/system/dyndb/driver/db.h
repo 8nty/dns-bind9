@@ -1,7 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
+ * Copyright (C) 2015  Red Hat ; see COPYRIGHT for license
+ */
+
 /**
  * Database API implementation.
- *
- * Copyright (C) 2015  Red Hat ; see COPYRIGHT for license
  */
 
 #pragma once

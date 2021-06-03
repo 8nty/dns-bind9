@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 These scripts generate a named.conf file with an arbitrary number of
 small zones, for testing startup performance.
 

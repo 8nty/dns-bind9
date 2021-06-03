@@ -1,33 +1,16 @@
 #!/usr/bin/perl
-#
-# Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, you can obtain one at https://mozilla.org/MPL/2.0/.
-#
-# See the COPYRIGHT file distributed with this work for additional
-# information regarding copyright ownership.
 
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
 #
-# Do a quick-and-dirty conversion of .mandoc man pages to
-# DocBook SGML.
-#
-# Minor hand editing of the output is usually required.
-# This has only been tested with library function man pages
-# (section 3); it probably does not work well for program
-# man pages.
-#
+# SPDX-License-Identifier: MPL-2.0
 
 print <<\END;
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN">
 <!--
- - Copyright (C) 2000, 2001  Internet Systems Consortium, Inc. ("ISC")
+ - SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
  -
- - This Source Code Form is subject to the terms of the Mozilla Public
- - License, v. 2.0. If a copy of the MPL was not distributed with this
- - file, You can obtain one at http://mozilla.org/MPL/2.0/.
--->
+ - SPDX-License-Identifier: MPL-2.0
+ -->
 
 <refentry>
 <refentryinfo>
@@ -73,7 +56,7 @@ my %tagmap = (
 	Ar => parameter,
 	Va => parameter,
 );
-	    
+
 while (<>) {
 	next if m/^\.\\\"/;
 	if (/^\.Dd (.*)$/) {
@@ -140,7 +123,7 @@ END
 		print "<option>-$1<\/option>$3\n";
 	}
 	elsif (/^\.Ft (.*)$/) {
-		print "<funcprototype>\n";		
+		print "<funcprototype>\n";
 		print "<funcdef>\n";
 		print "$1\n";
 		next;
@@ -189,14 +172,14 @@ END
 		print "<programlisting>\n";
 	}
 	elsif (/^\.Ed$/) {
-		print "</programlisting>\n";	       
+		print "</programlisting>\n";
 	}
 	elsif (/^\.Bl /) {
 		print "<variablelist>\n";
 	}
 	elsif (/^\.El$/) {
 		print "</para>\n";
-		print "</listitem>\n";		
+		print "</listitem>\n";
 		print "</variablelist>\n";
 	        $in_list = 0;
 	}

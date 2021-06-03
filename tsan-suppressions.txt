@@ -1,2 +1,6 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 # Uninstrumented library.
 called_from_lib:libfstrm.so

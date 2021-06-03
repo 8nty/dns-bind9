@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2008 Alan Woodland <ajw05@aber.ac.uk>
+# SPDX-FileCopyrightText: 2010 Diego Elio Petteno` <flameeyes@gmail.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later WITH Autoconf-exception-3.0
+
 # ===========================================================================
 #          https://www.gnu.org/software/autoconf-archive/ax_tls.html
 # ===========================================================================

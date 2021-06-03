@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 example.	0	SOA	. . 0 0 0 0 0
 example.	0	NS	.
 example.	0	CDS	0 0 0 00

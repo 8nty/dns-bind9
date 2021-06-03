@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2010 Reuben Thomas <rrt@sc3d.org>
+# SPDX-FileCopyrightText: 1999 Richard Henderson <rth@redhat.com>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later WITH Autoconf-exception-3.0
+
 # ===========================================================================
 #     https://www.gnu.org/software/autoconf-archive/ax_cc_for_build.html
 # ===========================================================================

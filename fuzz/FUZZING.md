@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
 = Fuzzing
 
 The tests in this directory can be operated in three modes:

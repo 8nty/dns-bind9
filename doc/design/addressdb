@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 You are lost in a maze of twisty little pointers, all alike...
 
 ADB                          |-> 0         |-> handle ---> handle ---> 0

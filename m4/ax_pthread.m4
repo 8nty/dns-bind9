@@ -1,3 +1,9 @@
+# SPDX-FileCopyrightText: 2008 Steven G. Johnson <stevenj@alum.mit.edu>
+# SPDX-FileCopyrightText: 2011 Daniel Richard G. <skunk@iSKUNK.ORG>
+# SPDX-FileCopyrightText: 2019 Marc Stevens <marc.stevens@cwi.nl>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later WITH Autoconf-exception-3.0
+
 # ===========================================================================
 #        https://www.gnu.org/software/autoconf-archive/ax_pthread.html
 # ===========================================================================

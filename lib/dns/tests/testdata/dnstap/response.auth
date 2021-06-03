@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
 # authoritative response, www.isc.org/A
 8d 24 84 00 00 01 00 01 00 04 00 07 03 77 77 77
 03 69 73 63 03 6f 72 67 00 00 01 00 01 c0 0c 00

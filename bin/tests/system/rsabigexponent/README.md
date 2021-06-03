@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 The `rsabigexponent` test is used to `check max-rsa-exponent-size`.
 
 We only run this test on builds without PKCS#11, as we have control over

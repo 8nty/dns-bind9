@@ -1,11 +1,19 @@
 /*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
+ * Copyright (C) 2008-2015  Red Hat ; see COPYRIGHT for license
+ */
+
+/*
  * Driver instance object.
  *
  * One instance is equivalent to dynamic-db section in named.conf.
  * This module parses arguments and provide high-level operations
  * instance init/zone load/instance destroy.
- *
- * Copyright (C) 2008-2015  Red Hat ; see COPYRIGHT for license
  */
 
 #include "instance.h"

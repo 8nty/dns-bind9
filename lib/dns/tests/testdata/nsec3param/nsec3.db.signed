@@ -1,3 +1,6 @@
+; SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+;
+; SPDX-License-Identifier: MPL-2.0
 ; File written on Mon Nov 16 16:04:21 2020
 ; dnssec_signzone version 9.16.8
 nsec3.			1000	IN SOA	nsec3. postmaster.nsec3. (

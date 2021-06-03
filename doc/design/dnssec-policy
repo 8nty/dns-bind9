@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 # DNSSEC Key and Signing Policy
 
 A DNSSEC key and signing policy (KASP) defines a DNSSEC policy that can be

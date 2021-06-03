@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 $ORIGIN given.zone.
 $TTL 3600
 @               IN SOA ns.given.zone.  hostmaster.given.zone. 1 600 300 604800 3600

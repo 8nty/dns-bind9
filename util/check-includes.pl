@@ -1,20 +1,8 @@
 #! /usr/bin/perl -ws
-#
-# Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, you can obtain one at https://mozilla.org/MPL/2.0/.
-#
-# See the COPYRIGHT file distributed with this work for additional
-# information regarding copyright ownership.
 
-# Rudimentary, primarily for use by the developers.
-# This just evolved with no serious attempt at making it
-# bulletproof or foolproof.  Or pretty even.  Probably would
-# have done it differently if it were actually designed as opposed
-# to just growing as a multi-tentacled thing as various messages
-# were either added or selectively silenced.
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
 
 # XXX many warnings should not be made unless the header will be a public file
 

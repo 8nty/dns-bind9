@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Internet Systems Consortium
+#
+# SPDX-License-Identifier: FSFAP
+
 #
 # SYNOPSIS
 #

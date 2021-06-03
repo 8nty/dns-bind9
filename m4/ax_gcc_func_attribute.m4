@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2008 Guido U. Draheim <guidod@gmx.de>
+#
+# SPDX-License-Identifier: FSFAP
+
 # ===========================================================================
 #  https://www.gnu.org/software/autoconf-archive/ax_gcc_func_attribute.html
 # ===========================================================================

@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+-->
 ## BIND 9 Coding Style
 
 BIND 9 is principally written in [C](#cstyle), with some additional code
@@ -62,10 +66,10 @@ https://spdx.org/licenses/ along with the license texts.
    The SPDX license identifier is added in form of a comment. The comment style
    depends on the file type:
 
-    C source: /* SPDX-License-Identifier: <SPDX License Expression> */
-    C header: /* SPDX-License-Identifier: <SPDX License Expression> */
-    scripts:  # SPDX-License-Identifier: <SPDX License Expression>
-    .rst:     .. SPDX-License-Identifier: <SPDX License Expression>
+    C source: /* SPDX-License-Identifier: MPL-2.0 */
+    C header: /* SPDX-License-Identifier: MPL-2.0 */
+    scripts:  # SPDX-License-Identifier: MPL-2.0
+    .rst:     .. SPDX-License-Identifier: MPL-2.0
 
    If a specific tool cannot handle the standard comment style, then the
    appropriate comment mechanism which the tool accepts shall be used. This is
@@ -82,12 +86,14 @@ https://spdx.org/licenses/ along with the license texts.
    License identifiers for licenses like MPL-2.0 with the ‘or later’ option are
    constructed by using a “+” for indicating the ‘or later’ option.:
 
- .. SPDX-License-Identifier: MPL-2.0+ */
+ .. SPDX-License-Identifier: MPL-2.0
+.. SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")+ */
 
    WITH should be used when there is a modifier to a license needed. For
    example:
 
- .. SPDX-License-Identifier: MPL-2.0+ WITH API-exception */
+ .. SPDX-License-Identifier: MPL-2.0
+.. SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")+ WITH API-exception */
 
    Exceptions can only be used with particular License identifiers. The valid
    License identifiers are listed in the tags of the exception text file. For
@@ -96,14 +102,16 @@ https://spdx.org/licenses/ along with the license texts.
    OR should be used if the file is dual licensed and only one license is to be
    selected. For example, some files are available under dual licenses:
 
- .. SPDX-License-Identifier: MPL-2.0 OR BSD-3-Clause */
+ .. SPDX-License-Identifier: MPL-2.0
+.. SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC") OR BSD-3-Clause */
 
    AND should be used if the file has multiple licenses whose terms all apply to
    use the file. For example, if code is inherited from another project and
    permission has been given to put it in the BIND 9, but the original license
    terms need to remain in effect:
 
- .. SPDX-License-Identifier: MPL-2.0 AND MIT */
+ .. SPDX-License-Identifier: MPL-2.0
+.. SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC") AND MIT */
 
 #### Indentation
 

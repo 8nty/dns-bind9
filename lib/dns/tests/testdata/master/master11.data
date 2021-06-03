@@ -1,3 +1,6 @@
+; SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+;
+; SPDX-License-Identifier: MPL-2.0
 ;
 ;	The following serial number contains a leading 0 and a 9 so the
 ;	we can catch cases where it is incorrectly treated as a octal

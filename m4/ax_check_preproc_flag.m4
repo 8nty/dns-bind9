@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2008 Guido U. Draheim <guidod@gmx.de>
+# SPDX-FileCopyrightText: 2011 Maarten Bosmans <mkbosmans@gmail.com>
+#
+# SPDX-License-Identifier: FSFAP
+
 # ===========================================================================
 #  https://www.gnu.org/software/autoconf-archive/ax_check_preproc_flag.html
 # ===========================================================================

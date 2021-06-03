@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 # The bind.keys file is used to override the built-in DNSSEC trust anchors
 # which are included as part of BIND 9.  The only trust anchors it contains
 # are for the DNS root zone (".").  Trust anchors for any other zones MUST

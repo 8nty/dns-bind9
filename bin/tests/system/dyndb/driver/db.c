@@ -1,4 +1,14 @@
 /*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
+ * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
+ */
+
+/*
  * Database API implementation. The interface is defined in lib/dns/db.h.
  *
  * dns_db_*() calls on database instances backed by this driver use
@@ -7,8 +17,6 @@
  * This example re-uses RBT DB implementation from original BIND and blindly
  * proxies most of dns_db_*() calls to this underlying RBT DB.
  * See struct sampledb below.
- *
- * Copyright (C) 2009-2015  Red Hat ; see COPYRIGHT for license
  */
 
 #include "db.h"

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 KIT INSTALLATION:
 
 Unpack the kit into any convenient directory and run the BINDInstall

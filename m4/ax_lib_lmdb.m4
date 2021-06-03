@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2020 Internet Systems Consortium
+#
+# SPDX-License-Identifier: FSFAP
+
 # ===========================================================================
 #      https://gitlab.isc.org/isc-projects/autoconf-archive/ax_lib_lmdb.html
 # ===========================================================================

@@ -1,14 +1,10 @@
 #! /bin/sh -ex
-#
-# Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, you can obtain one at https://mozilla.org/MPL/2.0/.
-#
-# See the COPYRIGHT file distributed with this work for additional
-# information regarding copyright ownership.
 
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
+#
 # XXXDCL This is currently much too specific to the environment in which
 # it was written (NetBSD 1.5_alpha2 with libiconv in /usr/local/lib).  It
 # is essentially just a copy of the commands I used to test building of

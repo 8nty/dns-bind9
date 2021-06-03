@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
 /* VersionInfo.h: interface for the CVersionInfo class. */
 /* */
 /*//////////////////////////////////////////////////////////////////// */

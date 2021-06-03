@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
 Building BIND 9 on Windows has the following prerequisites:
 
 1) You need to install Perl for Windows.  ActivePerl

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+ *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
 zone1.com.				      86400 IN SOA	dns1.zone1.com. hostmaster.zone1.com. 2001062501 21600 3600 604800 86400
 zone1.com.				      86400 IN NS	dns1.zone1.com.
 zone1.com.				      86400 IN NS	dns2.zone1.com.

@@ -1,14 +1,10 @@
 #!/bin/sh
-#
-# Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-#
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, you can obtain one at https://mozilla.org/MPL/2.0/.
-#
-# See the COPYRIGHT file distributed with this work for additional
-# information regarding copyright ownership.
 
+# SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
+#
+# SPDX-License-Identifier: MPL-2.0
+
+#
 # Creates the system tests output file from the various test.output.* files.  It
 # then searches that file and prints the number of tests passed, failed, not
 # run.  It also checks whether the IP addresses 10.53.0.[1-8] were set up and,

@@ -1,7 +1,4 @@
-Copyright (C) Internet Systems Consortium, Inc. ("ISC")
-
-See COPYRIGHT in the source root or https://isc.org/copyright.html for terms.
-
+SPDX-License-Identifier: MPL-2.0
 # Unsupported algorithms in BIND 9
 
 Following RFC 6944 and jumping ahead to draft-ietf-dnsop-algorithm-update-04,

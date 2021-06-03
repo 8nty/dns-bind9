@@ -1,7 +1,15 @@
 /*
- * Sync PTR records
+ * SPDX-FileCopyrightText: Internet Systems Consortium, Inc. ("ISC")
  *
+ * SPDX-License-Identifier: MPL-2.0
+ */
+
+/*
  * Copyright (C) 2014-2015  Red Hat ; see COPYRIGHT for license
+ */
+
+/*
+ * Sync PTR records
  */
 
 #pragma once
