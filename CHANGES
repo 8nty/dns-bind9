@@ -1,3 +1,6 @@
+5689.	[bug]		TCP keepalive settings were not being applied
+			correctly. [GL #1927]
+
 5688.	[bug]		Inline and dnssec-policy zones could fail to apply
 			changes from the unsigned zone to the signed zone
 			under certain cirumstances. [GL #2735]
