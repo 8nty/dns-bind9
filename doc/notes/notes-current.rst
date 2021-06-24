@@ -45,6 +45,9 @@ New Features
   parameters to an ``http`` statement. The defaults are 300 and 100
   respectively. :gl:`#2809`
 
+- Log an informational message when the internal RBT hashtable grows; as this
+  process can be time-consuming especially at large cache sizes. :gl:`#2277`
+
 Removed Features
 ~~~~~~~~~~~~~~~~
 
