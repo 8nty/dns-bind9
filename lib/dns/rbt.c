@@ -81,6 +81,7 @@ hash_32(uint32_t val, unsigned int bits) {
 
 struct dns_rbt {
 	unsigned int magic;
+	const char *name;
 	isc_mem_t *mctx;
 	dns_rbtnode_t *root;
 	void (*data_deleter)(void *, void *);
@@ -122,6 +123,7 @@ struct file_header {
 					  * --enable-rrset-fixed
 					  */
 	unsigned int nodecount;		 /* shadow from rbt structure */
+	unsigned int namelen;
 	uint64_t crc;
 	char version2[32]; /* repeated; must match version1 */
 };
@@ -501,13 +503,16 @@ write_header(FILE *file, dns_rbt_t *rbt, uint64_t first_node_offset,
 #endif /* ifdef DNS_RDATASET_FIXED */
 
 	header.nodecount = rbt->nodecount;
+	header.namelen = strlen(rbt->name);
 
 	header.crc = crc;
 
 	CHECK(isc_stdio_tell(file, &location));
 	location = dns_rbt_serialize_align(location);
 	CHECK(isc_stdio_seek(file, location, SEEK_SET));
+	INSIST(sizeof(file_header_t) + strlen(rbt->name) < HEADER_LENGTH);
 	CHECK(isc_stdio_write(&header, 1, sizeof(file_header_t), file, NULL));
+	CHECK(isc_stdio_write(rbt->name, 1, strlen(rbt->name), file, NULL));
 	CHECK(fflush(file));
 
 	/* Ensure we are always at the end of the file. */
@@ -898,15 +903,12 @@ dns_rbt_deserialize_tree(void *base_address, size_t filesize,
 	dns_rbt_t *rbt = NULL;
 	uint64_t crc;
 	unsigned int host_big_endian;
+	const char *name = NULL;
 
 	REQUIRE(originp == NULL || *originp == NULL);
 	REQUIRE(rbtp != NULL && *rbtp == NULL);
 
 	isc_crc64_init(&crc);
-
-	CHECK(dns_rbt_create(mctx, deleter, deleter_arg, &rbt));
-
-	rbt->mmap_location = base_address;
 
 	header = (file_header_t *)((char *)base_address + header_offset);
 	if (!match_header_version(header)) {
@@ -938,7 +940,13 @@ dns_rbt_deserialize_tree(void *base_address, size_t filesize,
 		goto cleanup;
 	}
 
+	name = (const char *)((char *)base_address + header_offset +
+			      sizeof(file_header_t));
+
+	CHECK(dns_rbt_create(mctx, name, deleter, deleter_arg, &rbt));
+
 	/* Copy other data items from the header into our rbt. */
+	rbt->mmap_location = base_address;
 	rbt->root = (dns_rbtnode_t *)((char *)base_address + header_offset +
 				      header->first_node_offset);
 
@@ -988,8 +996,8 @@ cleanup:
  * Initialize a red/black tree of trees.
  */
 isc_result_t
-dns_rbt_create(isc_mem_t *mctx, dns_rbtdeleter_t deleter, void *deleter_arg,
-	       dns_rbt_t **rbtp) {
+dns_rbt_create(isc_mem_t *mctx, const char *name, dns_rbtdeleter_t deleter,
+	       void *deleter_arg, dns_rbt_t **rbtp) {
 	isc_result_t result;
 	dns_rbt_t *rbt;
 
@@ -1001,6 +1009,7 @@ dns_rbt_create(isc_mem_t *mctx, dns_rbtdeleter_t deleter, void *deleter_arg,
 
 	rbt->mctx = NULL;
 	isc_mem_attach(mctx, &rbt->mctx);
+	rbt->name = isc_mem_strdup(mctx, name);
 	rbt->data_deleter = deleter;
 	rbt->deleter_arg = deleter_arg;
 	rbt->root = NULL;
@@ -1034,6 +1043,7 @@ dns_rbt_destroy(dns_rbt_t **rbtp) {
 isc_result_t
 dns_rbt_destroy2(dns_rbt_t **rbtp, unsigned int quantum) {
 	dns_rbt_t *rbt;
+	char *name;
 
 	REQUIRE(rbtp != NULL && VALID_RBT(*rbtp));
 
@@ -1057,6 +1067,8 @@ dns_rbt_destroy2(dns_rbt_t **rbtp, unsigned int quantum) {
 
 	rbt->magic = 0;
 
+	DE_CONST(rbt->name, name);
+	isc_mem_free(rbt->mctx, name);
 	isc_mem_putanddetach(&rbt->mctx, rbt, sizeof(*rbt));
 	return (ISC_R_SUCCESS);
 }
@@ -2369,6 +2381,7 @@ rehash(dns_rbt_t *rbt, uint32_t newbits) {
 	size_t oldsize;
 	dns_rbtnode_t **oldtable;
 	size_t newsize;
+	size_t count = 0;
 
 	REQUIRE(rbt->hashbits <= rbt->maxhashbits);
 	REQUIRE(newbits <= rbt->maxhashbits);
@@ -2376,6 +2389,12 @@ rehash(dns_rbt_t *rbt, uint32_t newbits) {
 	oldbits = rbt->hashbits;
 	oldsize = HASHSIZE(oldbits);
 	oldtable = rbt->hashtable;
+
+	isc_log_write(dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_CACHE,
+		      ISC_LOG_INFO,
+		      "rehash %p: grow hashtable (%s) from %zu to %zu starting",
+		      rbt, rbt->name, (size_t)1 << oldbits,
+		      (size_t)1 << newbits);
 
 	rbt->hashbits = newbits;
 	newsize = HASHSIZE(rbt->hashbits);
@@ -2391,10 +2410,17 @@ rehash(dns_rbt_t *rbt, uint32_t newbits) {
 			nextnode = HASHNEXT(node);
 			HASHNEXT(node) = rbt->hashtable[hash];
 			rbt->hashtable[hash] = node;
+			count++;
 		}
 	}
 
 	isc_mem_put(rbt->mctx, oldtable, oldsize * sizeof(dns_rbtnode_t *));
+
+	isc_log_write(
+		dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_CACHE,
+		ISC_LOG_INFO,
+		"rehash %p: grow hashtable finished: rehashed %zu entries", rbt,
+		count);
 }
 
 static void

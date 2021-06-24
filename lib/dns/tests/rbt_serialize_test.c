@@ -308,7 +308,7 @@ serialize_test(void **state) {
 
 	isc_mem_debugging = ISC_MEM_DEBUGRECORD;
 
-	result = dns_rbt_create(dt_mctx, delete_data, NULL, &rbt);
+	result = dns_rbt_create(dt_mctx, "test", delete_data, NULL, &rbt);
 	assert_int_equal(result, ISC_R_SUCCESS);
 
 	add_test_data(dt_mctx, rbt);
@@ -377,7 +377,7 @@ deserialize_corrupt_test(void **state) {
 	isc_mem_debugging = ISC_MEM_DEBUGRECORD;
 
 	/* Set up map file */
-	result = dns_rbt_create(dt_mctx, delete_data, NULL, &rbt);
+	result = dns_rbt_create(dt_mctx, "test", delete_data, NULL, &rbt);
 	assert_int_equal(result, ISC_R_SUCCESS);
 
 	add_test_data(dt_mctx, rbt);

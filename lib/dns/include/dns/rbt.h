@@ -281,8 +281,8 @@ typedef struct dns_rbtnodechain {
 ***** Public interfaces.
 *****/
 isc_result_t
-dns_rbt_create(isc_mem_t *mctx, dns_rbtdeleter_t deleter, void *deleter_arg,
-	       dns_rbt_t **rbtp);
+dns_rbt_create(isc_mem_t *mctx, const char *name, dns_rbtdeleter_t deleter,
+	       void *deleter_arg, dns_rbt_t **rbtp);
 /*%<
  * Initialize a red-black tree of trees.
  *
@@ -294,7 +294,8 @@ dns_rbt_create(isc_mem_t *mctx, dns_rbtdeleter_t deleter, void *deleter_arg,
  *      as its second argument.
  *
  * Requires:
- * \li  mctx is a pointer to a valid memory context.
+ *\li   mctx is a pointer to a valid memory context.
+ *\li   name != NULL
  *\li   rbtp != NULL && *rbtp == NULL
  *\li   arg == NULL iff deleter == NULL
  *
