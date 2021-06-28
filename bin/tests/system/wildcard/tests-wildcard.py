@@ -68,8 +68,6 @@ def query(where, port, label, rdtype):
 
 
 # Tests
-@pytest.mark.dnspython
-@pytest.mark.hypothesis
 @given(label=binary(min_size=1, max_size=63),
        rdtype=integers(min_value=0, max_value=65535).filter(
            is_nonexpanding_rdtype))
@@ -84,8 +82,6 @@ def check_answer_nodata(querymsg, answer):
     assert answer.answer == [], str(answer)
 
 
-@pytest.mark.dnspython
-@pytest.mark.hypothesis
 @given(label=binary(min_size=1, max_size=63))
 def test_wildcard_match(label, named_port):
     """any label with maching rdtype must result in wildcard data in answer"""

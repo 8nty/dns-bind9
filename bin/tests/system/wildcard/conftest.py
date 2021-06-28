@@ -15,4 +15,4 @@ import pytest
 
 @pytest.fixture(scope='module')
 def named_port():
-    return os.environ.get("PORT", default=5300)
+    return int(os.environ.get("PORT", default=5300))
