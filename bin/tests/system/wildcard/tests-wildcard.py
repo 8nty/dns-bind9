@@ -51,8 +51,10 @@ TIMEOUT = 5  # seconds, just a sanity check
 
 # Helpers
 def is_nonexpanding_rdtype(rdtype):
-    """skip meta types to avoid weird rcodes caused by AXFR etc."""
-    return not(rdtype == WILDCARD_RDTYPE or dns.rdatatype.is_metatype(rdtype))
+    """skip meta types to avoid weird rcodes caused by AXFR etc.; RFC 6895"""
+    return not(rdtype == WILDCARD_RDTYPE
+               or dns.rdatatype.is_metatype(rdtype)  # known metatypes: OPT ...
+               or (rdtype >= 128 and rdtype <= 255))  # unknown meta types
 
 
 def tcp_query(where, port, qname, qtype):
