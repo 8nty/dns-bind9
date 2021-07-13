@@ -8570,6 +8570,7 @@ dns_rbtdb_create(isc_mem_t *mctx, const dns_name_t *origin, dns_dbtype_t type,
 	bool (*sooner)(void *, void *);
 	isc_mem_t *hmctx = mctx;
 	char namestr[DNS_NAME_FORMATSIZE];
+	/* size of "rbtdb-nsec3 cache " = 19 */
 	char refstr[DNS_NAME_FORMATSIZE + 19];
 	size_t size;
 
@@ -8704,7 +8705,7 @@ dns_rbtdb_create(isc_mem_t *mctx, const dns_name_t *origin, dns_dbtype_t type,
 	 * Make the Red-Black Trees.
 	 */
 	dns_name_format(origin, namestr, sizeof(namestr));
-	size = strlen(namestr) + strlen("rbtdb-nsec3 cache ") + 1;
+	size = strlen(namestr) + sizeof(refstr) + 1;
 
 	snprintf(refstr, size, "rbtdb-tree %s %s",
 		 IS_CACHE(rbtdb) ? "cache" : "zone", namestr);
