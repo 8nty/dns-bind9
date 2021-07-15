@@ -311,6 +311,14 @@ n=$((n+1))
 [ $ret -eq 0 ] || echo_i "failed"
 status=$((status+ret))
 
+echo_i "checking map files load with previous MAPAPI version ($n)"
+ret=0
+$CHECKZONE -D -f map -F map -o map.6 example ns1/example.db.map.old > /dev/null
+[ $? = 1 ] || ret=1
+n=$((n+1))
+[ $ret -eq 0 ] || echo_i "failed"
+status=$((status+ret))
+
 echo_i "checking map format zone is scheduled for resigning (compilezone) ($n)"
 ret=0
 rndccmd 10.53.0.1 zonestatus signed > rndc.out 2>&1 || ret=1
