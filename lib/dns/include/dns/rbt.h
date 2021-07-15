@@ -287,6 +287,8 @@ dns_rbt_create(isc_mem_t *mctx, const char *name, dns_rbtdeleter_t deleter,
  * Initialize a red-black tree of trees.
  *
  * Notes:
+ *\li   The name is used to reference the tree, for logging purposes.
+ *
  *\li   The deleter argument, if non-null, points to a function that is
  *      responsible for cleaning up any memory associated with the data
  *      pointer of a node when the node is deleted.  It is passed the
