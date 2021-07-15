@@ -2383,6 +2383,8 @@ isc_nmhandle_keepalive(isc_nmhandle_t *handle, bool value) {
 	}
 
 	atomic_store(&sock->keepalive, value);
+	sock->read_timeout = value ? atomic_load(&sock->mgr->keepalive)
+				   : atomic_load(&sock->mgr->idle);
 }
 
 void *
