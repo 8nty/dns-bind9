@@ -2390,7 +2390,7 @@ rehash(dns_rbt_t *rbt, uint32_t newbits) {
 	oldsize = HASHSIZE(oldbits);
 	oldtable = rbt->hashtable;
 
-	isc_log_write(dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_CACHE,
+	isc_log_write(dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_RBT,
 		      ISC_LOG_INFO,
 		      "rehash %p: grow hashtable (%s) from %zu to %zu starting",
 		      rbt, rbt->name, (size_t)1 << oldbits,
@@ -2417,7 +2417,7 @@ rehash(dns_rbt_t *rbt, uint32_t newbits) {
 	isc_mem_put(rbt->mctx, oldtable, oldsize * sizeof(dns_rbtnode_t *));
 
 	isc_log_write(
-		dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_CACHE,
+		dns_lctx, DNS_LOGCATEGORY_DATABASE, DNS_LOGMODULE_RBT,
 		ISC_LOG_INFO,
 		"rehash %p: grow hashtable finished: rehashed %zu entries", rbt,
 		count);
