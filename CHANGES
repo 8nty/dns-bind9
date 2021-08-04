@@ -1,3 +1,6 @@
+5689.	[bug]		named-checkconf failed to detect syntactically invalid
+			key and tls names. [GL #2461]
+
 5688.	[bug]		Inline and dnssec-policy zones could fail to apply
 			changes from the unsigned zone to the signed zone
 			under certain cirumstances. [GL #2735]
