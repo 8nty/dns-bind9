@@ -1,3 +1,6 @@
+5689.	[bug]		Journals where not being remove when a catalog zone
+			was removed. [GL #2842]
+
 5688.	[bug]		Inline and dnssec-policy zones could fail to apply
 			changes from the unsigned zone to the signed zone
 			under certain cirumstances. [GL #2735]
