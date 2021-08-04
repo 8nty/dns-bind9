@@ -122,6 +122,7 @@ TESTS +=			\
 	hooks			\
 	journal			\
 	keepalive		\
+	keyfromlabel		\
 	legacy			\
 	limits			\
 	logfileconfig		\
