@@ -206,11 +206,6 @@ isc_app_ctxrun(isc_appctx_t *ctx) {
 		UNLOCK(&ctx->lock);
 	}
 
-	/* Tools using multiple contexts do not rely on signal. */
-	if (ctx != &isc_g_appctx) {
-		return (ISC_R_SUCCESS);
-	}
-
 	/*
 	 * There is no danger if isc_app_shutdown() is called before we
 	 * wait for signals.  Signals are blocked, so any such signal will
@@ -218,33 +213,53 @@ isc_app_ctxrun(isc_appctx_t *ctx) {
 	 * sigwait().
 	 */
 	while (!atomic_load_acquire(&ctx->want_shutdown)) {
-		sigset_t sset;
-		int sig;
-		/*
-		 * Wait for SIGHUP, SIGINT, or SIGTERM.
-		 */
-		if (sigemptyset(&sset) != 0 || sigaddset(&sset, SIGHUP) != 0 ||
-		    sigaddset(&sset, SIGINT) != 0 ||
-		    sigaddset(&sset, SIGTERM) != 0)
-		{
-			char strbuf[ISC_STRERRORSIZE];
-			strerror_r(errno, strbuf, sizeof(strbuf));
-			isc_error_fatal(__FILE__, __LINE__,
-					"isc_app_run() sigsetops: %s", strbuf);
-		}
+		if (ctx == &isc_g_appctx) {
+			sigset_t sset;
+			int sig;
+			/*
+			 * Wait for SIGHUP, SIGINT, or SIGTERM.
+			 */
+			if (sigemptyset(&sset) != 0 ||
+			    sigaddset(&sset, SIGHUP) != 0 ||
+			    sigaddset(&sset, SIGINT) != 0 ||
+			    sigaddset(&sset, SIGTERM) != 0)
+			{
+				char strbuf[ISC_STRERRORSIZE];
+				strerror_r(errno, strbuf, sizeof(strbuf));
+				isc_error_fatal(__FILE__, __LINE__,
+						"isc_app_run() sigsetops: %s",
+						strbuf);
+			}
 
-		if (sigwait(&sset, &sig) == 0) {
-			switch (sig) {
-			case SIGINT:
-			case SIGTERM:
-				atomic_store_release(&ctx->want_shutdown, true);
+			if (sigwait(&sset, &sig) == 0) {
+				switch (sig) {
+				case SIGINT:
+				case SIGTERM:
+					atomic_store_release(
+						&ctx->want_shutdown, true);
+					break;
+				case SIGHUP:
+					atomic_store_release(&ctx->want_reload,
+							     true);
+					break;
+				default:
+					INSIST(0);
+					ISC_UNREACHABLE();
+				}
+			}
+		} else {
+			/*
+			 * Tools using multiple contexts don't
+			 * rely on a signal, just wait until woken
+			 * up.
+			 */
+			if (atomic_load_acquire(&ctx->want_shutdown)) {
 				break;
-			case SIGHUP:
-				atomic_store_release(&ctx->want_reload, true);
-				break;
-			default:
-				INSIST(0);
-				ISC_UNREACHABLE();
+			}
+			if (!atomic_load_acquire(&ctx->want_reload)) {
+				LOCK(&ctx->readylock);
+				WAIT(&ctx->ready, &ctx->readylock);
+				UNLOCK(&ctx->readylock);
 			}
 		}
 		if (atomic_compare_exchange_strong_acq_rel(
@@ -295,6 +310,7 @@ isc_app_ctxshutdown(isc_appctx_t *ctx) {
 		if (ctx != &isc_g_appctx) {
 			/* Tool using multiple contexts */
 			atomic_store_release(&ctx->want_shutdown, true);
+			SIGNAL(&ctx->ready);
 		} else {
 			/* Normal single BIND9 context */
 			if (kill(getpid(), SIGTERM) < 0) {
@@ -327,6 +343,7 @@ isc_app_ctxsuspend(isc_appctx_t *ctx) {
 		if (ctx != &isc_g_appctx) {
 			/* Tool using multiple contexts */
 			atomic_store_release(&ctx->want_reload, true);
+			SIGNAL(&ctx->ready);
 		} else {
 			/* Normal single BIND9 context */
 			if (kill(getpid(), SIGHUP) < 0) {
