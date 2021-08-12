@@ -2786,8 +2786,21 @@ start_tcp(dig_query_t *query) {
 #if HAVE_LIBNGHTTP2
 		} else if (query->lookup->https_mode) {
 			char uri[4096] = { 0 };
-			snprintf(uri, sizeof(uri), "https://%s:%u%s",
-				 query->userarg, (uint16_t)port,
+			struct addrinfo hints = { .ai_family = PF_INET6,
+						  .ai_socktype = SOCK_STREAM,
+						  .ai_protocol = IPPROTO_TCP,
+						  .ai_flags = AI_NUMERICHOST },
+					*res0 = 0;
+			bool ipv6_literal = false;
+
+			if (getaddrinfo(query->userarg, NULL, &hints, &res0) ==
+			    0) {
+				ipv6_literal = true;
+				freeaddrinfo(res0);
+			}
+			snprintf(uri, sizeof(uri), "https://%s%s%s:%u%s",
+				 ipv6_literal ? "[" : "", query->userarg,
+				 ipv6_literal ? "]" : "", (uint16_t)port,
 				 query->lookup->https_path);
 
 			if (!query->lookup->http_plain) {
