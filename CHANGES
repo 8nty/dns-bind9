@@ -1,3 +1,9 @@
+5694.	[cleanup]	Remove support for external applications to register
+			and use libisc. Export versions of BIND 9 libraries
+			have not been supported for some time, but the
+			isc_lib_register() function was still available;
+			it has now been removed. [GL !2420]
+
 5693.	[func]		Restore support for reading 'timeout' and 'attempts'
 			options from /etc/resolv.conf, and use their values
 			in dig, host and nslookup. (Previously this was
