@@ -3047,6 +3047,60 @@ isc__nm_http_settimeout(isc_nmhandle_t *handle, uint32_t timeout) {
 	}
 }
 
+void
+isc_nm_http_makeuri(const bool https, const isc_sockaddr_t *sa,
+		    const char *hostname, const uint16_t http_port,
+		    const char *abs_path, char *outbuf,
+		    const size_t outbuf_len) {
+	char saddr[INET6_ADDRSTRLEN] = { 0 };
+	int family;
+	bool ipv6_addr = false;
+	struct sockaddr_in6 sa6;
+	uint16_t host_port = http_port;
+	const char *host = NULL;
+
+	REQUIRE(outbuf != NULL);
+	REQUIRE(outbuf_len != 0);
+	REQUIRE(isc_nm_http_path_isvalid(abs_path));
+
+	/* If hostname is specified - let's use that. */
+	if (hostname != NULL && hostname[0] != '\0') {
+		/* The host name could be an IPv6 address. If it is the case,
+		 * then let's wrap it between [ and ] */
+		if (inet_pton(AF_INET6, hostname, &sa6) == 1 &&
+		    hostname[0] != '[') {
+			ipv6_addr = true;
+		}
+		host = hostname;
+	} else {
+		/* A hostname was not specified. Let's build one from the given
+		 * IP address */
+		INSIST(sa != NULL);
+		family = ((const struct sockaddr *)&sa->type.sa)->sa_family;
+		host_port = ntohs(family == AF_INET ? sa->type.sin.sin_port
+						    : sa->type.sin6.sin6_port);
+		ipv6_addr = family == AF_INET6;
+		(void)inet_ntop(
+			family,
+			family == AF_INET
+				? (const struct sockaddr *)&sa->type.sin.sin_addr
+				: (const struct sockaddr *)&sa->type.sin6
+					  .sin6_addr,
+			saddr, sizeof(saddr));
+		host = saddr;
+	}
+
+	/* So, the port number was not specified. Let's guess it according
+	 * to the fact if we want to use encryption or not. */
+	if (host_port == 0) {
+		host_port = https ? 443 : 80;
+	}
+
+	(void)snprintf(outbuf, outbuf_len, "%s://%s%s%s:%u%s",
+		       https ? "https" : "http", ipv6_addr ? "[" : "", host,
+		       ipv6_addr ? "]" : "", host_port, abs_path);
+}
+
 /*
  * DoH GET Query String Scanner-less Recursive Descent Parser/Verifier
  *
