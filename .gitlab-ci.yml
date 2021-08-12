@@ -1322,6 +1322,7 @@ respdiff-kresd:
     SERVER_IMPLEMENTATION: kresd
     MAX_DISAGREEMENTS_PERCENTAGE: "0.5"
   script:
+    - apt install -y wget
     - wget https://secure.nic.cz/files/knot-resolver/knot-resolver-release.deb
     - dpkg -i knot-resolver-release.deb
     - apt update
