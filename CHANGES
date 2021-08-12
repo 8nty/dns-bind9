@@ -1,3 +1,6 @@
+5691.	[bug]		Fix a bug preventing dig from qurying DoH servers
+			via its IPv6 adresses. [GL #2860]
+
 5690.	[func]		Change "dnssec-signzone" to honor the Predecessor and
 			Successor metadata values, and allow for gradual
 			replacement of RRSIGs. In other words, don't sign
