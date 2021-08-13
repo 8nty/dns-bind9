@@ -1334,7 +1334,8 @@ respdiff-kresd:
     - git clone --depth 1 --branch mnowak/respdiff-add-third-party-server-support https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.isc.org/isc-private/bind-qa.git
     - mkdir refbind/
     - cd bind-qa/bind9/respdiff
-    - bash respdiff.sh -q "${PWD}/100k_mixed.txt" -c 3 -w "${PWD}/rspworkdir" "${CI_PROJECT_DIR}/refbind" "${CI_PROJECT_DIR}"
+    #- bash respdiff.sh -q "${PWD}/100k_mixed.txt" -c 3 -w "${PWD}/rspworkdir" "${CI_PROJECT_DIR}/refbind" "${CI_PROJECT_DIR}"
+    - bash respdiff.sh -q "${PWD}/10k_a.txt" -c 3 -w "${PWD}/rspworkdir" "${CI_PROJECT_DIR}/refbind" "${CI_PROJECT_DIR}"
   needs:
     - job: tarball-create
       artifacts: true
