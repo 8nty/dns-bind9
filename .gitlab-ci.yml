@@ -1381,6 +1381,41 @@ respdiff-unbound:
     expire_in: "1 day"
     when: always
 
+respdiff-powerdns:
+  <<: *base_image
+  <<: *schedules_tags_web_triggering_rules
+  stage: system
+  variables:
+    CC: gcc
+    CFLAGS: "${CFLAGS_COMMON} -Og"
+    SERVER_IMPLEMENTATION: powerdns
+    MAX_DISAGREEMENTS_PERCENTAGE: "0.5"
+  script:
+    - echo "deb [arch=amd64] http://repo.powerdns.com/debian buster-rec-45 main" > /etc/apt/sources.list.d/pdns.list
+    - echo -e "Package: pdns-*\nPin: origin repo.powerdns.com\nPin-Priority: 600" > /etc/apt/preferences.d/pdns
+    - curl -sSL https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add -
+    - apt update
+    - apt -y install pdns-recursor
+    - autoreconf -fi
+    - ./configure
+    - make -j${BUILD_PARALLEL_JOBS:-1} V=1
+    - *setup_interfaces
+    - git clone --depth 1 --branch mnowak/respdiff-add-third-party-server-support https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.isc.org/isc-private/bind-qa.git
+    - mkdir refbind/
+    - cd bind-qa/bind9/respdiff
+    #- bash respdiff.sh -q "${PWD}/100k_mixed.txt" -c 3 -w "${PWD}/rspworkdir" "${CI_PROJECT_DIR}/refbind" "${CI_PROJECT_DIR}"
+    - bash respdiff.sh -q "${PWD}/10k_a.txt" -c 3 -w "${PWD}/rspworkdir" "${CI_PROJECT_DIR}/refbind" "${CI_PROJECT_DIR}"
+  needs:
+    - job: tarball-create
+      artifacts: true
+  artifacts:
+    paths:
+      - refbind
+      - bind-qa/bind9/respdiff
+    untracked: true
+    expire_in: "1 day"
+    when: always
+
 # "Stress" tests
 
 .stress: &stress_job
