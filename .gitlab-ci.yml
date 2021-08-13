@@ -1392,7 +1392,7 @@ respdiff-powerdns:
     MAX_DISAGREEMENTS_PERCENTAGE: "0.5"
   script:
     - echo "deb [arch=amd64] http://repo.powerdns.com/debian buster-rec-45 main" > /etc/apt/sources.list.d/pdns.list
-    - echo -e "Package: pdns-*\nPin: origin repo.powerdns.com\nPin-Priority: 600" > /etc/apt/preferences.d/pdns
+    - echo -e "Package:pdns-*\nPin:origin repo.powerdns.com\nPin-Priority:600" > /etc/apt/preferences.d/pdns
     - curl -sSL https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add -
     - apt update
     - apt -y install pdns-recursor
